@@ -9,9 +9,12 @@ export const useProductContext = () => useContext(ProductContext);
 
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState(SHOP_DATA);
+  const [showCartDropdown, setShowCartDropdown] = useState(false);
 
   return (
-    <ProductContext.Provider value={{ products }}>
+    <ProductContext.Provider
+      value={{ products, showCartDropdown, setShowCartDropdown }}
+    >
       {children}
     </ProductContext.Provider>
   );
