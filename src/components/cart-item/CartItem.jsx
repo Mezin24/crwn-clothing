@@ -1,10 +1,16 @@
 import './cart-item.scss';
 
 const CartItem = ({ product }) => {
-  const { name } = product;
+  const { name, imageUrl, price, quantity } = product;
   return (
-    <div>
-      <h2>{name}</h2>
+    <div className='cart-item-container'>
+      <img src={imageUrl} alt={name} />
+      <div className='item-details'>
+        <span className='name'>{name}</span>
+        <span className='price'>
+          {quantity} X ${price}
+        </span>
+      </div>
     </div>
   );
 };
