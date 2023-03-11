@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useUserContext } from '../../context/user.context';
+import { useCartContext } from '../../context/cart.context';
 
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
 import { signOutUser } from '../../firebase/firebase.utils';
@@ -10,6 +11,7 @@ import './navigation.scss';
 
 const Navigation = () => {
   const { currentUser } = useUserContext();
+  const { showCart } = useCartContext();
 
   return (
     <header className='navigation'>
@@ -31,7 +33,7 @@ const Navigation = () => {
         )}
         <CartIcon />
       </div>
-      <CartDropdown />
+      {showCart && <CartDropdown />}
     </header>
   );
 };
