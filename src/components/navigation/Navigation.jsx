@@ -3,6 +3,8 @@ import { useUserContext } from '../../context/user.context';
 
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
 import { signOutUser } from '../../firebase/firebase.utils';
+import CartIcon from '../cart-icon/CartIcon';
+import CartDropdown from '../cart-dropdown/CartDropdown';
 
 import './navigation.scss';
 
@@ -27,7 +29,9 @@ const Navigation = () => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+      <CartDropdown />
     </header>
   );
 };
