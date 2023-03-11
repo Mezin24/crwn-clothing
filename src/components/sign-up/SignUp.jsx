@@ -8,7 +8,7 @@ import FormInput from '../form-input/FormInput';
 import Button from '../UI/button/Button';
 import './sign-up.scss';
 
-const defaultFileds = {
+const defaultFields = {
   displayName: '',
   email: '',
   password: '',
@@ -16,12 +16,12 @@ const defaultFileds = {
 };
 
 const SignUp = () => {
-  const [formFileds, setFormFileds] = useState(defaultFileds);
-  const { displayName, email, password, confirmPassword } = formFileds;
+  const [formFields, setFormFields] = useState(defaultFields);
+  const { displayName, email, password, confirmPassword } = formFields;
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
-    setFormFileds({ ...formFileds, [name]: value });
+    setFormFields({ ...formFields, [name]: value });
   };
 
   const submitHandler = async (e) => {
@@ -39,13 +39,12 @@ const SignUp = () => {
         ...user,
         displayName,
       });
-      console.log(userDocRef);
-      setFormFileds(defaultFileds);
+      setFormFields(defaultFields);
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         toast.error('Cannot create user, email already exists');
       }
-      console.log('error with creating user', user.message);
+      console.log('error with creating user', error.message);
     }
   };
 

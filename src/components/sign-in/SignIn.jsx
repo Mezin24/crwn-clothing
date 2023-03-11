@@ -20,8 +20,7 @@ const SignIn = () => {
   const { email, password } = userInput;
 
   const signInwithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   const changeHandler = (e) => {
@@ -29,14 +28,14 @@ const SignIn = () => {
     setUserInput({ ...userInput, [name]: value });
   };
 
-  const handlesubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
+      setUserInput(defaultValue);
     } catch (error) {
       if (error.code === 'auth/wrong-password') {
         toast.error('Wrong password');
@@ -52,7 +51,7 @@ const SignIn = () => {
     <div className='sign-up-container'>
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
-      <form onSubmit={handlesubmit}>
+      <form onSubmit={handleSubmit}>
         <FormInput
           label='email'
           required={true}
