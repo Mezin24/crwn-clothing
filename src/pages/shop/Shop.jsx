@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { useCategoriesContext } from '../../context/categories.context';
 import ProductCard from '../../components/product-card/ProductCard';
 import './shop.scss';
@@ -10,9 +11,11 @@ const Shop = () => {
     <Fragment>
       {Object.entries(categoriesMap).map(([title, items]) => (
         <Fragment key={title}>
-          <h2>{title}</h2>
+          <h2>
+            <Link to={`/shop/${title}`}>{title}</Link>
+          </h2>
           <div className='products-container'>
-            {items.map((product) => {
+            {items.slice(0, 4).map((product) => {
               return <ProductCard key={product.id} product={product} />;
             })}
           </div>
