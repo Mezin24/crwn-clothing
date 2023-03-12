@@ -1,14 +1,14 @@
 import CategoryItem from './CategoryItem';
 
-import './category-list.scss';
+import { DirectoryContainer } from './category-list.component';
 
 const CategoryList = ({ categories }) => {
   return (
-    <div className='directory-container'>
+    <DirectoryContainer>
       {categories.map((category) => (
         <CategoryItem key={category.id} category={category} />
       ))}
-    </div>
+    </DirectoryContainer>
   );
 };
 
