@@ -6,10 +6,10 @@ import {
 } from './cart-icon.component';
 
 const CartIcon = () => {
-  const { setShowCart, totalQuantity } = useCartContext();
+  const { setShowCart, totalQuantity, showCart } = useCartContext();
 
   return (
-    <CartIconContainer onClick={() => setShowCart((prev) => !prev)}>
+    <CartIconContainer onClick={() => setShowCart(!showCart)}>
       <ShoppingIcon />
       <ItemCount>{totalQuantity}</ItemCount>
     </CartIconContainer>
