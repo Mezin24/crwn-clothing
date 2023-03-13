@@ -12,6 +12,8 @@ import {
   createUserDocumentFromAuth,
 } from './firebase/firebase.utils';
 import { setCurrentUser } from './store/user/user.action';
+import { setCategories } from './store/categories/category.action';
+import { getCategoriesAndDocuments } from './firebase/firebase.utils';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,6 +28,16 @@ const App = () => {
 
     return unsubscribe;
   }, [dispatch]);
+
+  useEffect(() => {
+    const getCategoriesMap = async () => {
+      const categoriesArr = await getCategoriesAndDocuments('categories');
+      console.log(categoriesArr);
+      dispatch(setCategories(categoriesArr));
+    };
+
+    getCategoriesMap();
+  }, []);
 
   return (
     <Routes>
